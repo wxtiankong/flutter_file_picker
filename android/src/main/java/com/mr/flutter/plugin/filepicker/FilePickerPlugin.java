@@ -180,7 +180,7 @@ public class FilePickerPlugin implements MethodCallHandler {
       String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
       if(extension.equals("gltf") ||extension.equals("glb") )
       {
-            mime = extension;
+            mime = "*/" +extension;
       }
       mime = mime == null ? "unsupported" : mime;
       Log.i(TAG, "Custom file type: " + mime);
