@@ -178,10 +178,10 @@ public class FilePickerPlugin implements MethodCallHandler {
     if(isCustom) {
       final String extension = type.split("__CUSTOM_")[1].toLowerCase();
       String mime = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-      if(extension.equals("gltf") ||extension.equals("glb") )
-      {
-            mime = "*/" +extension;
-      }
+        if(extension.equals("gltf") )
+        {
+            mime = "*/gltf" ;
+        }
       mime = mime == null ? "unsupported" : mime;
       Log.i(TAG, "Custom file type: " + mime);
       return mime;
@@ -214,6 +214,7 @@ public class FilePickerPlugin implements MethodCallHandler {
         intent.setDataAndType(uri, type);
         intent.setType(type);
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, isMultipleSelection);
+        intent.putExtra("CONTENT_TYPE", type);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
 
         if (intent.resolveActivity(instance.activity().getPackageManager()) != null) {
